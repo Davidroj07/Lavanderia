@@ -1,0 +1,214 @@
+<html lang="es">
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+
+        .container {
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0 0 0;
+        }
+
+        .header img {
+            width: 100px;
+        }
+
+        .header h1 {
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin-top: 5px;
+            margin-right: 0;
+            margin-bottom: 5px;
+            margin-left: 0;
+            font-size: 10px;
+        }
+
+        .info-box {
+            border: 1px solid #000; /* Borde del cuadro */
+            border-radius: 8px; /* Bordes redondeados (opcional) */
+            padding: 10px; /* Espaciado interno */
+            background-color: #f9f9f9; /* Color de fondo (opcional) */
+            margin-bottom: 20px; /* Separación inferior (opcional) */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra para efecto visual */
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between; /* Espaciado entre los dos bloques */
+        }
+
+        .info div {
+            width: 48%; /* Ancho de cada bloque dentro del cuadro */
+        }
+
+        .info div p {
+            margin-top: 5px;
+            margin-right: 0;
+            margin-bottom: 5px;
+            margin-left: 0;
+            font-size: 14px;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: rgb(0, 0, 0);
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: rgb(0, 0, 0);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(0, 0, 0);
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: rgb(0, 0, 0);
+            border-image-repeat: stretch;
+            border-image-source: none;
+            border-image-width: 1;
+        }
+
+        th,
+        td {
+            padding-top: 8px;
+            padding-right: 8px;
+            padding-bottom: 8px;
+            padding-left: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer div {
+            width: 48%;
+        }
+
+        .footer div p {
+            margin-top: 5px;
+            margin-right: 0;
+            margin-bottom: 5px;
+            margin-left: 0;
+            font-size: 14px;
+        }
+
+    </style>
+
+    <title>Remision</title>
+
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div>
+            <img alt="Lavaindux Logo" height="100" src="https://storage.googleapis.com/a1aa/image/eXV941uV9ZxdQabOJvlHvho4erImkmJSu9MGz30JfyEBISGoA.jpg" width="100"/>
+            <p>CALLE 19 Bis No. 30-106- Duitama - Boyacá</p>
+            <p>CELS. 319 640 4007 - 320 466 2203</p>
+        </div>
+        <div>
+            <p>lavaindux@outlook.com</p>
+            <p>Ana Elvira González Merchán</p>
+            <p>NIT. 23554793-3</p>
+            <h1>REMISION</h1>
+            <p><strong>No:</strong> <%= numero %></p> <!-- Uso de EJS para insertar datos -->
+        </div>
+    </div>
+    <div class="info-box">
+        <div class="info">
+            <div>
+                <p><strong>Cliente:</strong> <%= nombre_completo %></p>
+                <p><strong>Dirección:</strong> <%= direccion %></p>
+                <p><strong>Telefono:</strong> <%= telefono %></p>
+            </div>
+            <div>
+                <p><strong>Fecha Recibido:</strong> <%= fecha_recibido %></p>
+                <p><strong>Fecha Entrega:</strong> <%= fecha_entrega %></p></div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>DESCRIPCION</th>
+                <th>CANT. RECIBIDA</th>
+                <th>CANT. ENTREGADA</th>
+                <th>REPROCESO</th>
+                <th>OBSERVACIONES</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% items.forEach(function(item) { %> <!-- Iterar sobre los items -->
+            <tr>
+                <td><%= item.producto %></td>
+                <td><%= item.cantidad_recibida %></td>
+                <td><%= item.cantidad_entregada %></td>
+                <td><%= item.reproceso %></td>
+                <td><%= item.observacion %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <div class="footer">
+        <div>
+            <p><strong>Firma Cliente:</strong> </p>
+            <p><strong>Firma Cliente:</strong> </p>
+        </div>
+        <div>
+            <p><strong>TOTAL KILOS:</strong> <%= total_peso %></p>
+            <p><strong>VALOR TOTAL:</strong> <%= valor_total %></p>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

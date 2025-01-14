@@ -1,0 +1,55 @@
+{
+  "name": "exchange",
+  "version": "1.0.0",
+  "description": "Aplicación para gestionar intercambios de información y documentos",
+  "main": "src/main.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuusuario/exchange.git"
+  },
+  "author": "Tu Nombre <tuemail@example.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/main.js",
+    "start": "node src/main.js",
+    "build": "webpack",
+    "lint": "eslint src/**/*.js",
+    "test": "jest",
+    "format": "prettier --write src/**/*.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
+    "browserify-zlib": "^0.2.0",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.10",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.1",
+    "html-pdf": "^3.0.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.5",
+    "normalize-url": "^8.0.0",
+    "promise-mysql": "^5.2.0",
+    "puppeteer": "^23.11.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-loader": "^9.2.1",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "dotenv-webpack": "^8.1.0",
+    "ejs-loader": "^0.5.0",
+    "eslint": "^8.51.0",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "jest": "^29.6.2",
+    "mini-css-extract-plugin": "^2.9.2",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.1.0",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
+  }
+}

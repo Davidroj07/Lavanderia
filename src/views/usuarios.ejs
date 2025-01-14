@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tabla.css">
+</head>
+<body>
+<div class="table-widget">
+    <div class="table-controls">
+        <button id="back-btn" onclick="closePage()">
+            <img src="/icons/close.svg" alt="Cerrar" class="icon">
+        </button>
+        <button id="new-record-btn"><i class="fa fa-plus"></i>Nuevo</button>
+        <label for="items-per-page" class="dropdown-label">Mostrar:</label>
+        <select id="items-per-page" class="modern-dropdown">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+        </select>
+    </div>
+    <table>
+        <caption>
+            Usuarios
+            <span class="table-row-count"></span>
+        </caption>
+        <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <th><label>
+                    <input type="text" placeholder="Buscar usuario" onkeyup="filterTable(0)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar nombre" onkeyup="filterTable(1)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Descripcion" onkeyup="filterTable(2)">
+                </label></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="team-member-rows">
+        <!-- Rows are dynamically generated -->
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5">
+                <ul class="pagination">
+                    <!-- Pagination links -->
+                </ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!-- Modal for new/edit record -->
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+        <h2 id="modal-title">Sucursal</h2>
+        <form id="member-form">
+            <!-- Código, solo lectura -->
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" required>
+
+            <!-- Nombre -->
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" required>
+
+            <!-- Contraseña -->
+            <label for="password">Contraseña:</label>
+            <input type="text" id="password" required>
+
+            <!-- Estado -->
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" required>
+
+            <!-- Nivel -->
+            <label for="nivel">Nivel:</label>
+            <input type="text" id="nivel" required>
+
+            <!-- Botones -->
+            <div class="modal-buttons">
+                <button type="submit">Guardar</button>
+                <button type="button" id="cancel-btn">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script type="module" src="usuario.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bcrypt.js/5.0.1/bcrypt.min.js"></script>
+</body>
+</html>

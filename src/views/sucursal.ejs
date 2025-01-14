@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tabla.css">
+</head>
+<body>
+<div class="table-widget">
+    <div class="table-controls">
+        <button id="back-btn" onclick="closePage()">
+            <img src="/icons/close.svg" alt="Cerrar" class="icon">
+        </button>
+        <button id="new-record-btn"><i class="fa fa-plus"></i>Nuevo</button>
+        <label for="items-per-page" class="dropdown-label">Mostrar:</label>
+        <select id="items-per-page" class="modern-dropdown">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+        </select>
+    </div>
+    <table id="tablaSucursal">
+        <caption>
+            Sucursales
+            <span class="table-row-count"></span>
+        </caption>
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Nombre Completo</th>
+            <th>Nit</th>
+            <th>Dirección</th>
+            <th>Telefono</th>
+            <th>Ciudad</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <th><label>
+                    <input type="text" placeholder="Buscar Codigo" onkeyup="filterTable(0)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Nombre" onkeyup="filterTable(1)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Nombre Completo" onkeyup="filterTable(2)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Nit" onkeyup="filterTable(3)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Dirección" onkeyup="filterTable(4)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Telefono" onkeyup="filterTable(5)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Ciudad" onkeyup="filterTable(6)">
+                </label></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="team-member-rows">
+        <!-- Rows are dynamically generated -->
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5">
+                <ul class="pagination">
+                    <!-- Pagination links -->
+                </ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!-- Modal for new/edit record -->
+<!-- Modal for new/edit record -->
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+        <h2 id="modal-title">Sucursal</h2>
+        <form id="member-form">
+            <!-- Código, solo lectura -->
+            <label for="code">Código:</label>
+            <input type="text" id="code" disabled>
+
+            <!-- Nombre -->
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" required>
+
+            <!-- Nombre Completo -->
+            <label for="full-name">Nombre Completo:</label>
+            <input type="text" id="full-name" required>
+
+            <!-- NIT -->
+            <label for="nit">NIT:</label>
+            <input type="text" id="nit" required>
+
+            <!-- Dirección -->
+            <label for="address">Dirección:</label>
+            <input type="text" id="address" required>
+
+            <!-- Teléfono -->
+            <label for="phone">Teléfono:</label>
+            <input type="text" id="phone" required>
+
+            <!-- Ciudad -->
+            <label for="city">Ciudad:</label>
+            <input type="text" id="city">
+
+            <!-- Botones -->
+            <div class="modal-buttons">
+                <button type="submit">Guardar</button>
+                <button type="button" id="cancel-btn">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script type="module" src="sucursal.js"></script>
+</body>
+</html>

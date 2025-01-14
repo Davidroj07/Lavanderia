@@ -1,0 +1,168 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Eliminar márgenes por defecto */
+    padding: 0; /* Eliminar espacios por defecto */
+    color: #333;display: flex;
+
+}
+
+.container {
+    width: 100%; /* Ocupar todo el ancho disponible */
+    height: auto; /* Ocupar todo el alto disponible */
+    margin: 0; /* Sin márgenes exteriores */
+    padding: 20px; /* Espaciado interno */
+    background: #fff;
+    box-shadow: none; /* Opcional: elimina la sombra si no es requerida */
+    border-radius: 0; /* Elimina bordes redondeados si quieres */
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column; /* Permite que los elementos (como la tabla) crezcan verticalmente */
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-buttons .btn {
+    margin-left: 10px;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-green { background-color: #28a745; color: white; }
+.btn-gray { background-color: #6c757d; color: white; }
+.btn-blue { background-color: #007bff; color: white; }
+.btn-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.form {
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+    height: 50px;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.details-header h2 {
+    font-size: 1.5rem;
+}
+
+.details-buttons .btn {
+    margin-left: 10px;
+}
+
+.details-buttons button {
+    display: inline-block; /* Cambia los botones para que estén en línea */
+    margin-right: 10px; /* Agrega espacio entre los botones */
+}
+
+.table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 0 auto 20px;
+}
+
+.table th, .table td {
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f1f1f1;
+}
+
+.table td input,
+.table td select {
+    width: 100%; /* Ajusta el tamaño del campo al ancho de la celda */
+    box-sizing: border-box; /* Incluye padding y borde dentro del ancho total */
+    max-width: 100%; /* Asegúrate de que no crezca más allá del tamaño de la celda */
+    font-size: 0.9rem; /* Opcional: Ajusta el tamaño de texto en pantallas pequeñas */
+}
+
+td .btn-sm i {
+    font-size: 0.2rem; /* Tamaño predeterminado */
+}
+
+td .ActivarEdicion i,
+td .EditarDetalle i,
+td .CancelarEdicion i,
+td .eliminarDetalle i {
+    font-size: 0.8rem; /* Aplica específicamente a estos botones */
+}
+
+td .btn-sm {
+    padding: 5px 5px; /* Ajusta el tamaño del espacio interno (arriba/abajo, izquierda/derecha) */
+    height: auto; /* Deja que el botón ajuste su altura en función del contenido */
+    line-height: 1; /* Controla el espacio vertical en botones con iconos */
+}
+
+.table th.acciones,
+.table td.acciones {
+    width: 90px; /* Ajusta el ancho de la columna de acciones */
+    text-align: center;
+}
+
+
+

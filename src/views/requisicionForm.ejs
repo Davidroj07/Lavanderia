@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Requisición</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="formulario.css">
+    <link rel="stylesheet" href="modal.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Formulario de Requisición</h1>
+        <div class="header-buttons">
+            <button type="submit" form="formRequisicion" class="btn btn-green">Guardar Requisición</button>
+            <button type="button" id="formVolver" class="btn btn-gray">Volver</button>
+        </div>
+    </header>
+
+    <form id="formRequisicion" class="form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="numero">Número de Requisición</label>
+                <input type="text" id="numero" name="numero" readonly>
+            </div>
+            <div class="form-group">
+                <label for="cliente_id">Cliente</label>
+                <select id="cliente_id" name="cliente_id" required>
+                    <option value="">Seleccione un cliente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fecha_recibido">Fecha Recibido</label>
+                <input type="date" id="fecha_recibido" name="fecha_recibido" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="total_peso">Peso Total (Kg)</label>
+                <input type="number" id="total_peso" name="total_peso" step="0.1" placeholder="Ingrese el peso total" disabled>
+            </div>
+            <div class="form-group">
+                <label for="valor_total">Valor Total</label>
+                <input type="number" id="valor_total" name="valor_total" step="0.1" placeholder="Ingrese el valor total" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Observación</label>
+            <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+        </div>
+    </form>
+
+    <section class="details">
+        <h2 class="details-header">
+            Detalles de la Requisición
+            <div class="details-buttons">
+                <button type="button" id="agregarDetalleBtn" class="btn btn-blue">Agregar Detalle</button>
+                <button type="button" id="generarPdfBtn" class="btn btn-icon">
+                    <img src="/icons/pdf.svg" alt="Configuración Icono" width="24" height="24"> PDF
+                </button>
+            </div>
+        </h2>
+        <table class="table" id="detallesTabla">
+            <thead>
+            <tr>
+                <th>Consecutivo</th>
+                <th>Código Producto</th>
+                <th>Nombre Producto</th>
+                <th>Cantidad Recibida</th>
+                <th>Peso (Kg)</th>
+                <th>Reproceso</th>
+                <th>Observación</th>
+                <th class="acciones">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Aquí se agregarán dinámicamente los detalles -->
+            </tbody>
+        </table>
+    </section>
+
+    <div id="modalDetalle" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Agregar Detalle</h5>
+                <button id="closeModal" class="close-button">&times;</button>
+            </div>
+            <form id="member-form">
+                <div class="modal-body">
+                    <form id="formDetalle">
+                        <div class="form-group">
+                            <label for="idProducto">Producto:</label>
+                            <select id="idProducto">
+                                <option value="">Seleccione un producto</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidadRecibida">Cantidad Recibida:</label>
+                            <input type="number" id="cantidadRecibida" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="peso">Peso (Kg):</label>
+                            <input type="number" id="peso" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="reproceso">Reproceso:</label>
+                            <select id="reproceso">
+                                <option value="false">No</option>
+                                <option value="true">Sí</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="observacion">Observación:</label>
+                            <input type="text" id="observacion">
+                        </div>
+                    </form>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button id="cancelModal" class="btn btn-secondary">Cancelar</button>
+                <button id="guardarDetalleBtn" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

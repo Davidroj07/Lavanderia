@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Requisición</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+<div class="container" style="width: 600px; margin: 0 auto;">
+    <header class="header">
+        <h1>Informe de Entregas entre fechas</h1>
+        <div class="header-buttons">
+            <button id="back-btn" onclick="closePage()">
+                <img src="/icons/close.svg" alt="Cerrar" class="icon">
+            </button>
+        </div>
+    </header>
+
+    <form id="formRequisicion" class="form">
+        <div class="form-row" style="width: 400px; margin: 0 auto;">
+            <div class="form-group">
+                <label for="fecha_inicio">Fecha Inicial:</label>
+                <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+            </div>
+        </div>
+        <div class="form-row" style="width: 400px; margin: 0 auto;">
+            <div class="form-group">
+                <label for="fecha_final">Fecha Final:</label>
+                <input type="date" id="fecha_final" name="fecha_final" required>
+            </div>
+        </div>
+        <div class="form-group" style="width: 400px; margin: 0 auto;">
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+                <button type="button" id="generarPdfBtn" class="btn btn-icon"
+                        style="width: 100px; height: 50px; font-size: 16px;">
+                    <img src="/icons/pdf.svg" alt="Configuración Icono" width="50" height="505" style="display: block; margin: 0 auto;">
+                </button>
+                <button type="button" id="generarExcelBtn" class="btn btn-icon"
+                        style="width: 100px; height: 50px; font-size: 16px;">
+                    <img src="/icons/excel.svg" alt="Configuración Icono" width="50" height="50" style="display: block; margin: 0 auto;">
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="module" src="infEntregaFecha.js"></script>
+</body>
+</html>

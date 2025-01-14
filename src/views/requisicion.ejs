@@ -1,0 +1,58 @@
+<div class="table-widget">
+    <div class="table-controls">
+        <button id="back-btn" onclick="closePage()">
+            <img src="/icons/close.svg" alt="Cerrar" class="icon">
+        </button>
+        <button id="new-record-btn"><i class="fa fa-plus"></i>Nuevo</button>
+        <label for="items-per-page" class="dropdown-label">Mostrar:</label>
+        <select id="items-per-page" class="modern-dropdown">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+        </select>
+    </div>
+    <table id="tablaRequisicion">
+        <caption>
+            Requisiciones
+            <span class="table-row-count"></span>
+        </caption>
+        <thead>
+        <tr>
+            <th>Numero</th>
+            <th>Cliente</th>
+            <th>Fecha recibido</th>
+            <th>Peso total</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <th><label>
+                    <input type="text" placeholder="Buscar Numero" onkeyup="filterTable(0)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Cliente" onkeyup="filterTable(1)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Fecha recibido" onkeyup="filterTable(2)">
+                </label></th>
+            <th><label>
+                    <input type="text" placeholder="Buscar Peso total" onkeyup="filterTable(3)">
+                </label></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="team-member-rows">
+        <!-- Rows are dynamically generated -->
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5">
+                <ul class="pagination">
+                    <!-- Pagination links -->
+                </ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script type="module" src="requisicion.ejs"></script>
+
