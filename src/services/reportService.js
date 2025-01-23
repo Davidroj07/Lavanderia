@@ -1,46 +1,69 @@
 import ejs from 'ejs';
 import { join } from 'path';
-import pdf from 'html-pdf';
+import puppeteer from 'puppeteer';
 
+/**
+ * Genera un PDF a partir de una plantilla EJS y datos proporcionados.
+ * @param {string} reportName - Nombre del archivo EJS (sin extensión).
+ * @param {Object} data - Datos a renderizar en la plantilla.
+ * @returns {Promise<Buffer>} - Devuelve un buffer con el contenido del PDF.
+ */
 const generateReport = async (reportName, data) => {
     try {
+        // Validación de entradas
+        if (!reportName || typeof reportName !== 'string') {
+            throw new Error('El nombre del reporte es inválido.');
+        }
+        if (!data || typeof data !== 'object') {
+            throw new Error('Los datos proporcionados son inválidos.');
+        }
+
         // Define la ruta de la plantilla EJS
         const templatePath = join(process.cwd(), 'src/templates', `${reportName}.ejs`);
 
         // Renderizar el HTML desde la plantilla EJS con los datos
-        const html = await ejs.renderFile(templatePath, data);
+        let html;
+        try {
+            html = await ejs.renderFile(templatePath, data);
+        } catch (error) {
+            console.error('Error al renderizar la plantilla EJS:', error);
+            throw new Error('Error al procesar la plantilla EJS.');
+        }
 
-        // Configuración del PDF
-        const pdfOptions = {
-            format: 'A4', // Tamaño del documento
-            orientation: 'portrait', // Orientación (vertical)
-            border: {
-                top: '10mm',
-                right: '10mm',
-                bottom: '10mm',
-                left: '10mm',
-            },
-            // Habilita la impresión de estilos CSS en el PDF
-            footer: {
-                height: '10mm',
-                contents: {
-                    default: '<div style="text-align: center; font-size: 10px;">Página {{page}} de {{pages}}</div>',
-                },
-            },
-        };
-
-        // Generar el PDF usando html-pdf
-        return new Promise((resolve, reject) => {
-            pdf.create(html, pdfOptions).toBuffer((err, buffer) => {
-                if (err) {
-                    console.error('Error generando el reporte:', err);
-                    return reject(err);
-                }
-                resolve(buffer); // Devuelve el PDF como un Buffer
+        // Inicializar Puppeteer
+        let browser;
+        try {
+            browser = await puppeteer.launch({
+                args: ['--no-sandbox', '--disable-setuid-sandbox'], // Requerido en entornos como Railway
+                headless: true,
             });
-        });
+            const page = await browser.newPage();
+
+            // Cargar el contenido HTML en Puppeteer
+            await page.setContent(html, { waitUntil: 'networkidle0' });
+
+            // Generar el PDF
+            const pdfBuffer = await page.pdf({
+                format: 'A4',
+                printBackground: true,
+                margin: {
+                    top: '10mm',
+                    right: '10mm',
+                    bottom: '10mm',
+                    left: '10mm',
+                },
+            });
+
+            // Cerrar Puppeteer y devolver el buffer
+            await browser.close();
+            return pdfBuffer;
+        } catch (error) {
+            console.error('Error al generar el PDF con Puppeteer:', error);
+            if (browser) await browser.close();
+            throw new Error('Error al generar el PDF.');
+        }
     } catch (error) {
-        console.error('Error al generar el reporte:', error);
+        console.error('Error en el servicio de generación de reportes:', error);
         throw error;
     }
 };
