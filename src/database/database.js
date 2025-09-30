@@ -8,6 +8,7 @@ const pool = mysql.createPool({
     user: config.user,
     password: config.password,
     database: config.database,
+    port: config.port,
     waitForConnections: true,
     connectionLimit: 10, // Límite de conexiones simultáneas
     queueLimit: 0 // Sin límite en la cola de conexiones

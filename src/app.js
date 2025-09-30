@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import apiRoutes from "./routes/apiRoutes.js";
@@ -15,9 +16,11 @@ app.set("port", 3000);
 app.set('views', join(__dirname, 'views'))
 app.set('view engine', 'ejs');
 
+
 //Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 
 // Rutas
 app.use(apiRoutes);  // Rutas de la API (use)
